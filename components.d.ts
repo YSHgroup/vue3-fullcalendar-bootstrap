@@ -7,6 +7,12 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BButton: typeof import('bootstrap-vue-next')['BButton']
+    BCol: typeof import('bootstrap-vue-next')['BCol']
+    BContainer: typeof import('bootstrap-vue-next')['BContainer']
+    BNav: typeof import('bootstrap-vue-next')['BNav']
+    BNavItem: typeof import('bootstrap-vue-next')['BNavItem']
+    BRow: typeof import('bootstrap-vue-next')['BRow']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
@@ -15,6 +21,7 @@ declare module 'vue' {
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideNav: typeof import('./src/components/SideNav.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }

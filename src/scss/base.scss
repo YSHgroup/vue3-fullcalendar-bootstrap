@@ -41,10 +41,9 @@ $section-gap: 160px;
 }
 
 body {
-  padding: 3rem;
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  background-color: var(--color-background);
   transition:
     color 0.5s,
     background-color 0.5s;

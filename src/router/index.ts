@@ -8,7 +8,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.meta && to.meta.title === 'string') {
+  if(to.meta && typeof to.meta.title === 'string') {
     document.title = to.meta.title
   }
   next()
