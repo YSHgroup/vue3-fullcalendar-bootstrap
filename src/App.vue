@@ -6,7 +6,7 @@ import SideNav from "./components/SideNav.vue";
 <template>
   <b-container tag="main" class="min-vh-100">
     <b-row class="py-4">
-      <b-col cols="2" class="px-2 pt-4 bg-primary text-white rounded-2">
+      <b-col cols="2" class="px-2 py-4 bg-primary text-white rounded-2">
 
         <side-nav msg="You did it!" />
 

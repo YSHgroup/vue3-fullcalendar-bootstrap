@@ -10,6 +10,7 @@ declare module 'vue' {
     BButton: typeof import('bootstrap-vue-next')['BButton']
     BCol: typeof import('bootstrap-vue-next')['BCol']
     BContainer: typeof import('bootstrap-vue-next')['BContainer']
+    BFormInput: typeof import('bootstrap-vue-next')['BFormInput']
     BNav: typeof import('bootstrap-vue-next')['BNav']
     BNavItem: typeof import('bootstrap-vue-next')['BNavItem']
     BRow: typeof import('bootstrap-vue-next')['BRow']
@@ -23,6 +24,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SideNav: typeof import('./src/components/SideNav.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    VueSlot: typeof import('./src/components/VueSlot.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }
