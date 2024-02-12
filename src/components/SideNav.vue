@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <b-nav  pills vertical class="greetings align-items-center br-2">
+  <b-nav  pills vertical class="greetings align-items-center text-center br-2">
     <img
       alt="Vue logo"
       class="logo"
@@ -16,9 +16,10 @@ defineProps<{
       height="125"
     />
     <h1 class="green">{{ msg }}</h1>
-
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
+    <b-row  gutter-y="2" offset="2">
+    <RouterLink to="/" ><BButton class="mx-auto" variant="success" >Home</BButton></RouterLink>
+    <RouterLink  to="/about"><BButton class="mx-auto" variant="success">About</BButton></RouterLink>
+    </b-row>
   </b-nav>
 </template>
 
