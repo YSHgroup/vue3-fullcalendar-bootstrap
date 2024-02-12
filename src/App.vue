@@ -1,23 +1,20 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
+import SideNav from "./components/SideNav.vue";
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <b-container tag="main">
+    <b-row class="py-4">
+      <b-col cols="2" class="px-2 bg-primary text-white rounded-2">
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+        <side-nav msg="You did it!" />
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+      </b-col>
+      <b-col cols="10"> <RouterView /> </b-col>
+    </b-row>
+  </b-container>
+  
 </template>
 
 <style scoped></style>

@@ -1,10 +1,10 @@
 import type { RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import HomeView from "../views/FullCalendar.vue";
 
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    name: "home",
+    name: "calendar",
     component: HomeView,
     meta: { title: "Full calendar" },
   },
