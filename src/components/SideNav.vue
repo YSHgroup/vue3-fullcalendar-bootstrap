@@ -7,18 +7,16 @@ defineProps<{
 </script>
 
 <template>
-  <b-nav  pills vertical class="greetings align-items-center text-center br-2">
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
+  <b-nav pills vertical class="greetings align-items-center text-center br-2">
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     <h1 class="green">{{ msg }}</h1>
-    <b-row  gutter-y="2" offset="2">
-    <RouterLink to="/" ><BButton class="mx-auto" variant="success" >Home</BButton></RouterLink>
-    <RouterLink  to="/about"><BButton class="mx-auto" variant="success">About</BButton></RouterLink>
+    <b-row gutter-y="2" offset="2">
+      <RouterLink to="/">
+        <BButton class="mx-auto" variant="success">Home</BButton>
+      </RouterLink>
+      <RouterLink to="/about">
+        <BButton class="mx-auto" variant="success">About</BButton>
+      </RouterLink>
     </b-row>
   </b-nav>
 </template>
@@ -41,6 +39,7 @@ h3 {
 }
 
 @media (min-width: 1024px) {
+
   .greetings h1,
   .greetings h3 {
     text-align: left;

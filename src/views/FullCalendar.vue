@@ -4,8 +4,6 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin, { type DateClickArg } from '@fullcalendar/interaction'
 import type {CalendarOptions} from '@fullcalendar/core'
 
-import SideNav from '../components/SideNav.vue'
-
 const handleDateClick = (arg: DateClickArg) => {
   alert('Date click! ' + arg.dateStr)
 }

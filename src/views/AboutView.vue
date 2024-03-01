@@ -51,11 +51,7 @@ import { ref } from "vue";
 
 import {
   Dropdown as FDropdown,
-  Tooltip,
-  Popper,
-  PopperContent,
-  PopperMethods,
-  ThemeClass,
+  Tooltip
 } from "floating-vue";
 import VueSlot from "@/components/VueSlot.vue";
 

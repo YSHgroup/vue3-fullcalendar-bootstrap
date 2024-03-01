@@ -14,6 +14,7 @@ declare module 'vue' {
     BNav: typeof import('bootstrap-vue-next')['BNav']
     BNavItem: typeof import('bootstrap-vue-next')['BNavItem']
     BRow: typeof import('bootstrap-vue-next')['BRow']
+    CustomPopper: typeof import('./src/components/CustomPopper.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
