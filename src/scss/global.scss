@@ -3,3 +3,5 @@ $body-bg: #000;
 $body-color: #111;
 
 @import "base";
+@import 'bootstrap/dist/css/bootstrap.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css'; // needs additional webpack config!
