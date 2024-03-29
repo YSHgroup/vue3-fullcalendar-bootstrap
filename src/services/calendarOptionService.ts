@@ -2,6 +2,10 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5'
+import listPlugin from '@fullcalendar/list'
+
+import allLocales from '@fullcalendar/core/locales-all'
+import enLocale from '@fullcalendar/core/locales/en-gb'
 
 import type { FullCalendar as F } from '@/interfaces'
 
@@ -10,12 +14,16 @@ const handleDateClick = (arg: F.DateClickArg) => {
 }
 
 export const calendarOptions: F.CalendarOptions = {
-	plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, bootstrap5Plugin],
+	plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, bootstrap5Plugin, listPlugin],
 	themeSystem: 'bootstrap5',
 	initialView: 'dayGridMonth',
+	locales: allLocales,
+	locale: enLocale, // 'fr'
+	nowIndicator: true,
+	navLinks:true,
 	headerToolbar: {
 		start:
-			'dayGridYear,dayGridMonth,timeGridWeek,timeGridDay timeGridFive',
+			'dayGridYear,dayGridMonth,timeGridWeek,timeGridDay,timeGridFive listWeek,listMonth',
 		center: 'title',
 		end: 'addResource prevYear,prev,next,nextYear',
 	},
@@ -40,7 +48,13 @@ export const calendarOptions: F.CalendarOptions = {
 		},
     timeGridDay: {
       titleFormat: { year: 'numeric', month: 'short', day: 'numeric', weekday: 'short' }
-    }
+    },
+		listWeek: {
+			buttonText: 'List Week',
+		},
+		listMonth: {
+			buttonText: 'List Month'
+		}
 	},
 	monthStartFormat: {
 		month: 'long',
@@ -61,10 +75,11 @@ export const calendarOptions: F.CalendarOptions = {
 		},
 	},
 	dateClick: handleDateClick,
-	events: [
-		{ title: 'Happy New Year', date: '2024-01-01' },
-		{ title: 'On Feb first', date: '2024-02-01' },
-		{ title: 'Lunar day', date: '2024-02-10' },
-		{ title: 'My birthday', date: '2024-02-18' },
-	],
+	events: 'https://fullcalendar.io/api/demo-feeds/events.json'
+	// events: [
+	// 	{ title: 'Happy New Year', date: '2024-01-01' },
+	// 	{ title: 'On Feb first', date: '2024-02-01' },
+	// 	{ title: 'Lunar day', date: '2024-02-10' },
+	// 	{ title: 'My birthday', date: '2024-02-18' },
+	// ],
 }
