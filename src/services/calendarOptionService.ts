@@ -8,19 +8,27 @@ import allLocales from '@fullcalendar/core/locales-all'
 import enLocale from '@fullcalendar/core/locales/en-gb'
 
 import type { FullCalendar as F } from '@/interfaces'
+import events from './eventService'
+
 
 const handleDateClick = (arg: F.DateClickArg) => {
 	alert('Date click! ' + arg.dateStr)
 }
 
 export const calendarOptions: F.CalendarOptions = {
-	plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, bootstrap5Plugin, listPlugin],
+	plugins: [
+		dayGridPlugin,
+		interactionPlugin,
+		timeGridPlugin,
+		bootstrap5Plugin,
+		listPlugin,
+	],
 	themeSystem: 'bootstrap5',
 	initialView: 'dayGridMonth',
 	locales: allLocales,
 	locale: enLocale, // 'fr'
 	nowIndicator: true,
-	navLinks:true,
+	navLinks: true,
 	headerToolbar: {
 		start:
 			'dayGridYear,dayGridMonth,timeGridWeek,timeGridDay,timeGridFive listWeek,listMonth',
@@ -29,9 +37,9 @@ export const calendarOptions: F.CalendarOptions = {
 	},
 	buttonIcons: {
 		prev: 'arrow-left-square',
-    prevYear: 'box-arrow-left',
+		prevYear: 'box-arrow-left',
 		next: 'arrow-right-square',
-    nextYear: 'box-arrow-right',
+		nextYear: 'box-arrow-right',
 	},
 	footerToolbar: {
 		start: 'custom1,custom2',
@@ -46,15 +54,20 @@ export const calendarOptions: F.CalendarOptions = {
 			},
 			buttonText: 'Fivedays',
 		},
-    timeGridDay: {
-      titleFormat: { year: 'numeric', month: 'short', day: 'numeric', weekday: 'short' }
-    },
+		timeGridDay: {
+			titleFormat: {
+				year: 'numeric',
+				month: 'short',
+				day: 'numeric',
+				weekday: 'short',
+			},
+		},
 		listWeek: {
 			buttonText: 'List Week',
 		},
 		listMonth: {
-			buttonText: 'List Month'
-		}
+			buttonText: 'List Month',
+		},
 	},
 	monthStartFormat: {
 		month: 'long',
@@ -75,11 +88,9 @@ export const calendarOptions: F.CalendarOptions = {
 		},
 	},
 	dateClick: handleDateClick,
-	events: 'https://fullcalendar.io/api/demo-feeds/events.json'
-	// events: [
-	// 	{ title: 'Happy New Year', date: '2024-01-01' },
-	// 	{ title: 'On Feb first', date: '2024-02-01' },
-	// 	{ title: 'Lunar day', date: '2024-02-10' },
-	// 	{ title: 'My birthday', date: '2024-02-18' },
-	// ],
+	initialEvents: 'https://fullcalendar.io/api/demo-feeds/events.json',
+
+	eventSources: [
+		...events
+	],
 }
