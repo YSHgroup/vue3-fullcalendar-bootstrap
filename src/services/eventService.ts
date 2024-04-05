@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import type { EventSourceInput } from '@fullcalendar/core'
+import type { FullCalendar as F } from '@/interfaces'
 
 export const getData = async (url: string) => {
 	const response = await fetch(url)
@@ -22,6 +22,7 @@ export const fetchEvent = async ({
 
 	return eventsForYear.map((event: Record<string, string | boolean>) => {
 		event['id'] = event.name
+		event['region'] = country
 		event['title'] = event.name
 		event['start'] = event.date
 		event['allDay'] = true
@@ -67,4 +68,4 @@ export default [
 		},
 		backgroundColor: 'lime',
 	},
-] as EventSourceInput[]
+] as F.EventSourceInput[]

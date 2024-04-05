@@ -3,17 +3,14 @@ import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5'
 import listPlugin from '@fullcalendar/list'
-
 import allLocales from '@fullcalendar/core/locales-all'
 import enLocale from '@fullcalendar/core/locales/en-gb'
 
 import type { FullCalendar as F } from '@/interfaces'
+
 import events from './eventService'
+import { handleDateClick } from './functions/calendarManipulator'
 
-
-const handleDateClick = (arg: F.DateClickArg) => {
-	alert('Date click! ' + arg.dateStr)
-}
 
 export const calendarOptions: F.CalendarOptions = {
 	plugins: [
@@ -33,18 +30,13 @@ export const calendarOptions: F.CalendarOptions = {
 		start:
 			'dayGridYear,dayGridMonth,timeGridWeek,timeGridDay,timeGridFive listWeek,listMonth',
 		center: 'title',
-		end: 'addResource prevYear,prev,next,nextYear',
+		end: 'addResource prevYear,prev,today,next,nextYear',
 	},
 	buttonIcons: {
 		prev: 'arrow-left-square',
 		prevYear: 'box-arrow-left',
 		next: 'arrow-right-square',
 		nextYear: 'box-arrow-right',
-	},
-	footerToolbar: {
-		start: 'custom1,custom2',
-		center: '',
-		end: 'prev,next',
 	},
 	views: {
 		timeGridFive: {
