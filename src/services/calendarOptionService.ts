@@ -11,6 +11,14 @@ import type { FullCalendar as F } from '@/interfaces'
 import events from './eventService'
 import { handleDateClick } from './functions/calendarManipulator'
 
+import { useCalendarStore } from '@/stores/calendar'
+
+export const openModal = () => {
+	const calendarStore = useCalendarStore()
+	const {setModal} = calendarStore
+	setModal()
+}
+console.log('option')
 
 export const calendarOptions: F.CalendarOptions = {
 	plugins: [
@@ -22,6 +30,7 @@ export const calendarOptions: F.CalendarOptions = {
 	],
 	themeSystem: 'bootstrap5',
 	initialView: 'dayGridMonth',
+	height: "100%",
 	locales: allLocales,
 	locale: enLocale, // 'fr'
 	nowIndicator: true,
@@ -30,7 +39,7 @@ export const calendarOptions: F.CalendarOptions = {
 		start:
 			'dayGridYear,dayGridMonth,timeGridWeek,timeGridDay,timeGridFive listWeek,listMonth',
 		center: 'title',
-		end: 'addResource prevYear,prev,today,next,nextYear',
+		end: 'addEvent prevYear,prev,today,next,nextYear',
 	},
 	buttonIcons: {
 		prev: 'arrow-left-square',
@@ -66,18 +75,10 @@ export const calendarOptions: F.CalendarOptions = {
 		day: 'numeric',
 	},
 	customButtons: {
-		custom1: {
-			text: 'custom 1',
-			click: function () {
-				alert('clicked custom button 1!')
-			},
-		},
-		custom2: {
-			text: 'custom 2',
-			click: function () {
-				alert('clicked custom button 2!')
-			},
-		},
+		addEvent: {
+			text: 'Add',
+			click: () => openModal()
+		}
 	},
 	dateClick: handleDateClick,
 	initialEvents: 'https://fullcalendar.io/api/demo-feeds/events.json',
