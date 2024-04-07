@@ -4,6 +4,7 @@ import { RouterLink } from "vue-router";
 defineProps<{
   msg: string;
 }>();
+
 </script>
 
 <template>
@@ -17,6 +18,10 @@ defineProps<{
       <RouterLink to="/about">
         <BButton class="mx-auto" variant="success">About</BButton>
       </RouterLink>
+    </b-row>
+
+    <b-row class="pt-4">
+      <slot name="content"></slot>
     </b-row>
   </b-nav>
 </template>
