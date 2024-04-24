@@ -1,7 +1,8 @@
 {
   "name": "vue3-fullcalendar",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
+  "homepage": "https://YSHgroup.github.io/vue3-fullcalendar-bootstrap/",
   "type": "module",
   "scripts": {
     "dev": "vite",
