@@ -20,7 +20,6 @@ const app = createApp(App)
 FloatingVue.options.distance = 2
 
 app.use(pinia)
-console.log('amin')
 app.use(router)
 
 app.use(createBootstrap())

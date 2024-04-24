@@ -21,7 +21,9 @@ defineProps<{
     </b-row>
 
     <b-row class="pt-4">
-      <slot name="content"></slot>
+      <b-col cols="12">
+        <slot name="content"></slot>
+      </b-col>
     </b-row>
   </b-nav>
 </template>

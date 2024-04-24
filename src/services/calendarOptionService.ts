@@ -18,7 +18,6 @@ export const openModal = () => {
 	const {setModal} = calendarStore
 	setModal()
 }
-console.log('option')
 
 export const calendarOptions: F.CalendarOptions = {
 	plugins: [
