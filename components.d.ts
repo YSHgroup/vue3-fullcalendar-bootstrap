@@ -29,4 +29,7 @@ declare module 'vue' {
     VueSlot: typeof import('./src/components/VueSlot.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
+  export interface ComponentCustomProperties {
+    vBColorMode: typeof import('bootstrap-vue-next')['vBColorMode']
+  }
 }

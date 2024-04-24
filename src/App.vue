@@ -16,7 +16,7 @@ const dateClicked = (date: string) => {
 
 <template>
   <b-row >
-    <b-col cols="2" class="bg-secondary text-white">
+    <b-col cols="12" class="bg-secondary text-white col-xxl-2">
       <side-nav msg="Calendar">
         <template v-slot:content>
           <vue-date-picker
@@ -30,7 +30,7 @@ const dateClicked = (date: string) => {
       </side-nav>
     </b-col>
 
-    <b-col cols="10" class="vh-100 p-4">
+    <b-col cols="12" class="vh-100 p-4 col-xxl-10">
       <b-container fluid tag="main" class="h-100">
         <RouterView />
       </b-container>
