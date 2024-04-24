@@ -29,6 +29,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      deployment:
+        outputs:
+          page_url: 'https://YSHgroup.github.io/vue3-fullcalendar-bootstrap/'
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Node
@@ -50,3 +53,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with: 
+          target_branch: main
