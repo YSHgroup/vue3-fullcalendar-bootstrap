@@ -19,10 +19,10 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v4
+      uses: YSHgroup/checkout@v4
     
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: YSHgroup/setup-node@v4
       with:
         node-version: 20.x.x
 
@@ -37,16 +37,16 @@ jobs:
       run: npm run build
 
     - name: Setup Pages
-      uses: actions/configure-pages@v4
+      uses: YSHgroup/configure-pages@v4
 
       env:
         NODE_ENV: production
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: YSHgroup/upload-pages-artifact@v3
       with:
         path: './dist'
     
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v4
+      uses: YSHgroup/deploy-pages@v4
