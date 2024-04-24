@@ -39,6 +39,11 @@ To run this app locally, follow these steps:
    http://localhost:[port]
    ```
 
+5. Deploy
+   ```
+   npm run deploy
+   ```
+
 ## Usage
 Once the app is running, you can interact with the calendar and explore its functionalities. The calendar displays events and allows you to perform actions such as adding, editing, and deleting events. You can navigate through different views, such as month, week, and day, to visualize events accordingly.
 

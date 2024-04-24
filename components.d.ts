@@ -13,7 +13,6 @@ declare module 'vue' {
     BCol: typeof import('bootstrap-vue-next')['BCol']
     BContainer: typeof import('bootstrap-vue-next')['BContainer']
     BFormInput: typeof import('bootstrap-vue-next')['BFormInput']
-    BModal: typeof import('bootstrap-vue-next')['BModal']
     BNav: typeof import('bootstrap-vue-next')['BNav']
     BRow: typeof import('bootstrap-vue-next')['BRow']
     EventModal: typeof import('./src/components/EventModal.vue')['default']
