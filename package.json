@@ -13,14 +13,21 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@fullcalendar/bootstrap5": "^6.1.11",
     "@fullcalendar/core": "^6.1.10",
     "@fullcalendar/daygrid": "^6.1.10",
+    "@fullcalendar/interaction": "^6.1.10",
+    "@fullcalendar/list": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.10",
     "@fullcalendar/vue3": "^6.1.10",
+    "@vuepic/vue-datepicker": "^8.5.0",
     "bootstrap": "^5.3.2",
-    "bootstrap-vue-next": "^0.16.1",
+    "bootstrap-icons": "^1.11.3",
+    "bootstrap-vue-next": "^0.17.2",
+    "date-fns": "^3.6.0",
+    "floating-vue": "^5.2.2",
     "pinia": "^2.1.7",
-    "vue": "^3.4.15",
+    "vue": "^3.4.24",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {

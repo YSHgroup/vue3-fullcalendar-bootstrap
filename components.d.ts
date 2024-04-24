@@ -7,7 +7,16 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    BButton: typeof import('bootstrap-vue-next')['BButton']
+    BCard: typeof import('bootstrap-vue-next')['BCard']
+    BCardText: typeof import('bootstrap-vue-next')['BCardText']
+    BCol: typeof import('bootstrap-vue-next')['BCol']
+    BContainer: typeof import('bootstrap-vue-next')['BContainer']
+    BFormInput: typeof import('bootstrap-vue-next')['BFormInput']
+    BModal: typeof import('bootstrap-vue-next')['BModal']
+    BNav: typeof import('bootstrap-vue-next')['BNav']
+    BRow: typeof import('bootstrap-vue-next')['BRow']
+    EventModal: typeof import('./src/components/EventModal.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
@@ -15,7 +24,12 @@ declare module 'vue' {
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideNav: typeof import('./src/components/SideNav.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    VueSlot: typeof import('./src/components/VueSlot.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vBColorMode: typeof import('bootstrap-vue-next')['vBColorMode']
   }
 }

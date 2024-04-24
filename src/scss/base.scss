@@ -1,38 +1,3 @@
-// Define color palette as SASS variables
-$vt-c-white: #ffffff;
-$vt-c-white-soft: #f8f8f8;
-$vt-c-white-mute: #f2f2f2;
-
-$vt-c-black: #181818;
-$vt-c-black-soft: #222222;
-$vt-c-black-mute: #282828;
-
-$vt-c-indigo: #2c3e50;
-
-$vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-$vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-$vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-$vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
-
-$vt-c-text-light-1: $vt-c-indigo;
-$vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-$vt-c-text-dark-1: $vt-c-white;
-$vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
-
-$section-gap: 160px;
-
-// Base styles using declared variables
-:root {
-  --color-background: $vt-c-white;
-  --color-background-soft: $vt-c-white-soft;
-  --color-background-mute: $vt-c-white-mute;
-
-  --color-border: $vt-c-divider-light-2;
-  --color-border-hover: $vt-c-divider-light-1;
-
-  --color-heading: $vt-c-text-light-1;
-  --color-text: $vt-c-text-light-1;
-}
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -41,10 +6,10 @@ $section-gap: 160px;
 }
 
 body {
-  padding: 3rem;
   min-height: 100vh;
+  margin: 0;
   color: var(--color-text);
-  background: var(--color-background);
+  background-color: var(--color-background);
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -66,6 +31,24 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  .row {
+    margin: 0;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background: $vt-c-white;
+    --color-background-soft: $vt-c-white-soft;
+    --color-background-mute: $vt-c-white-mute;
+
+    --color-border: $vt-c-divider-white-2;
+    --color-border-hover: $vt-c-divider-white-1;
+
+    --color-heading: $vt-c-text-white-1;
+    --color-text: $vt-c-text-white-2;
+  }
 }
 
 // Dark mode styles

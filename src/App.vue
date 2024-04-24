@@ -1,23 +1,42 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from "vue-router";
+import SideNav from "./components/SideNav.vue";
+import { ref, watch } from "vue";
+import { useCalendarStore } from "./stores/calendar";
+
+const date = ref(new Date())
+const calendarStore = useCalendarStore()
+
+const dateClicked = (date: string) => {
+    console.log(`Selected ${date}`);
+    calendarStore.getCalendarApi && calendarStore.getCalendarApi.gotoDate(date)
+  }
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <b-row >
+    <b-col cols="12" class="bg-secondary text-white col-xxl-2">
+      <side-nav msg="Calendar">
+        <template v-slot:content>
+          <vue-date-picker
+            v-model="date"
+            inline
+            auto-apply
+            :enable-time-picker="false"
+            @date-update="dateClicked"
+          ></vue-date-picker>
+        </template>
+      </side-nav>
+    </b-col>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <b-col cols="12" class="vh-100 p-4 col-xxl-10">
+      <b-container fluid tag="main" class="h-100">
+        <RouterView />
+      </b-container>
+    </b-col>
+  </b-row>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+</style>
