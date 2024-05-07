@@ -1,4 +1,4 @@
 import type * as FullCalendar from './builtInTypes'
-import type { CustomEvent } from './eventTypes'
+import type { CustomEvent, SelectedSlot } from './eventTypes'
 
-export type { FullCalendar, CustomEvent }
+export type { FullCalendar, CustomEvent, SelectedSlot }

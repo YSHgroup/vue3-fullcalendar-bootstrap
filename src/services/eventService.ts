@@ -18,7 +18,6 @@ export const fetchEvent = async ({
 
 	const year = format(range[0], 'yyyy')
 	const eventsForYear = await getData(`${baseURL}${year}/${country}`)
-	console.log('date--', eventsForYear)
 
 	return eventsForYear.map((event: Record<string, string | boolean>) => {
 		event['id'] = event.name
