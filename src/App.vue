@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import SideNav from "./components/SideNav.vue";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { useCalendarStore } from "./stores/calendar";
 
 const date = ref(new Date())

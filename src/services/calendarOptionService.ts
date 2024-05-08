@@ -9,7 +9,7 @@ import enLocale from '@fullcalendar/core/locales/en-gb'
 import type { FullCalendar as F } from '@/interfaces'
 
 import events from './eventService'
-import { handleDateClick } from './functions/calendarManipulator'
+import { handleDateClick, handleSelect } from './functions/calendarManipulator'
 
 import { useCalendarStore } from '@/stores/calendar'
 
@@ -34,6 +34,16 @@ export const calendarOptions: F.CalendarOptions = {
 	locale: enLocale, // 'fr'
 	nowIndicator: true,
 	navLinks: true,
+	weekNumbers: true,
+	weekText: 'W-	',
+	selectable: true,
+	dayMaxEvents: true,
+	editable: true,
+	// eventStartEditable: true,
+
+	eventRemove(arg) {
+		console.log('remove---', arg)
+	},
 	headerToolbar: {
 		start:
 			'dayGridYear,dayGridMonth,timeGridWeek,timeGridDay,timeGridFive listWeek,listMonth',
@@ -50,9 +60,10 @@ export const calendarOptions: F.CalendarOptions = {
 		timeGridFive: {
 			type: 'timeGrid',
 			duration: {
-				days: 5,
+				days: 7,
 			},
-			buttonText: 'Fivedays',
+			buttonText: 'Work days',
+			weekends: false
 		},
 		timeGridDay: {
 			titleFormat: {
@@ -79,7 +90,10 @@ export const calendarOptions: F.CalendarOptions = {
 			click: () => openModal()
 		}
 	},
+
 	dateClick: handleDateClick,
+	select: handleSelect,
+
 	initialEvents: 'https://fullcalendar.io/api/demo-feeds/events.json',
 
 	eventSources: [
