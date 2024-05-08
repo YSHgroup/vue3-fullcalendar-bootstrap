@@ -37,7 +37,13 @@ export const calendarOptions: F.CalendarOptions = {
 	weekNumbers: true,
 	weekText: 'W-	',
 	selectable: true,
+	dayMaxEvents: true,
+	editable: true,
+	// eventStartEditable: true,
 
+	eventRemove(arg) {
+		console.log('remove---', arg)
+	},
 	headerToolbar: {
 		start:
 			'dayGridYear,dayGridMonth,timeGridWeek,timeGridDay,timeGridFive listWeek,listMonth',
