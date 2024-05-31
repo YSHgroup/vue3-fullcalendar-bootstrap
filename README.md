@@ -3,6 +3,12 @@
 ## What is this?
 This app is an [example of how to use FullCalendar](https://github.com/YSHgroup/vue3-fullcalendar-bootstrap.git), which illustrates almost all functionalities of the library. It serves as a simulation of a calendar that can be used as a reference for building similar applications.
 
+[Go to Website](https://yshgroup.github.io/vue3-fullcalendar-bootstrap/)
+
+![Sample Calendar-1](src/assets/fullcalendar-first-page.png)
+
+![Sample Calendar](src/assets/fullcalendar-event-list.png)
+
 ## Main Plugins and Links Used
  | Name | Description |
  |-|-|
