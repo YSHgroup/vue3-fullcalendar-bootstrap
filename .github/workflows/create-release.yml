@@ -11,24 +11,30 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/checkout@v3
         with:
-          node-version: '20.x.x'
+          fetch-depth: 0
           
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Create release
+      - name: Get latest version
+        id: get_version
+        run: |
+          latest_tag=$(git describe --tags --abbrev=0)
+          version=$(echo $latest_tag | sed 's/v//')
+          IFS='.' read -ra version_parts <<< "$version"
+          major=${version_parts[0]}
+          minor=${version_parts[1]}
+          patch=$((${version_parts[2]}+1))
+          new_version="$major.$minor.$patch"
+          echo "new_version=$new_version" >> $GITHUB_OUTPUT
+
+      - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ github.run_number }}
-          release_name: Release ${{ github.run_number }}
+          tag_name: v${{ steps.get_version.outputs.new_version }}
+          release_name: Release ${{ steps.get_version.outputs.new_version }}
           body: |
             This is an automated release created on push to the main branch.
           draft: false
