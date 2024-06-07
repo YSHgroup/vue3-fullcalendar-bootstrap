@@ -24,7 +24,7 @@ jobs:
 
     environment:
       name: github-pages
-      url: https://yshgroup.github.io/vue3-fullcalendar-bootstrap/
+      url: https://infinity-chakra.github.io/vue3-fullcalendar-bootstrap/
 
     runs-on: ubuntu-latest
 
