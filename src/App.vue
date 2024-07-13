@@ -17,7 +17,7 @@ const dateClicked = (date: string) => {
 <template>
   <b-row >
     <b-col cols="12" class="bg-secondary text-white col-xxl-2">
-      <side-nav msg="Calendar">
+      <side-nav msg="FullCalendar with Vue 3">
         <template v-slot:content>
           <vue-date-picker
             v-model="date"
