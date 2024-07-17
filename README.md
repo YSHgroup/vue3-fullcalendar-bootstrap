@@ -23,6 +23,9 @@ This app is an [example of how to use FullCalendar](https://github.com/YSHgroup/
 - Utilization of date-fns library for handling date and time operations.
 
 ## Getting Started
+---
+- [You can get start on your browser.](https://stackblitz.com/~/github.com/YSHgroup/vue3-fullcalendar-bootstrap)
+---
 To run this app locally, follow these steps:
 
 1. Clone the repository: 
