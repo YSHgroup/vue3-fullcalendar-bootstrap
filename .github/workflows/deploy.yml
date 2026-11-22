@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -47,6 +48,28 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
+
+      - name: Wait for Pages artifact indexing
+        uses: actions/github-script@v7
+        with:
+          script: |
+            for (let attempt = 0; attempt < 8; attempt += 1) {
+              const { data } = await github.rest.actions.listWorkflowRunArtifacts({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId,
+              })
+
+              if (data.artifacts.some((artifact) => artifact.name === 'github-pages' && !artifact.expired)) {
+                core.info('The Pages artifact is available for deployment.')
+                return
+              }
+
+              core.info('Waiting for the Pages artifact to appear in the workflow run.')
+              await new Promise((resolve) => setTimeout(resolve, 2000))
+            }
+
+            core.setFailed('The uploaded Pages artifact did not become available for deployment.')
 
       - name: Deploy to GitHub Pages
         id: deployment
