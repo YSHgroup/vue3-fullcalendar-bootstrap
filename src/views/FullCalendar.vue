@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import FullCalendar from '@fullcalendar/vue3'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -14,7 +14,11 @@ import type {
   EventSourceFuncArg,
   EventInput,
 } from '@fullcalendar/core'
-import { fetchHolidayEvents, holidayCountries } from '@/services/eventService'
+import {
+  fetchAvailableCountries,
+  fetchHolidayEvents,
+  holidayCountries,
+} from '@/services/eventService'
 
 interface PersonalEvent extends EventInput {
   id: string
@@ -36,6 +40,9 @@ interface MiniCalendarDay {
 
 const storageKey = 'world-calendar-personal-events'
 const selectedCountries = ref(holidayCountries.map(({ code }) => code))
+const availableCountries = ref([...holidayCountries])
+const countrySearch = ref('')
+const countryLoadError = ref('')
 const calendarRef = ref<{ getApi: () => CalendarApi } | null>(null)
 const calendarTitle = ref('')
 const currentView = ref('dayGridMonth')
@@ -92,6 +99,15 @@ function readPersonalEvents(): PersonalEvent[] {
 
 const personalEvents = ref<PersonalEvent[]>(readPersonalEvents())
 const isLoading = computed(() => pendingRequests.value > 0)
+const filteredCountries = computed(() => {
+  const search = countrySearch.value.trim().toLocaleLowerCase()
+  if (!search) return availableCountries.value
+
+  return availableCountries.value.filter(
+    ({ code, name }) =>
+      name.toLocaleLowerCase().includes(search) || code.toLocaleLowerCase().includes(search),
+  )
+})
 const miniMonthLabel = computed(() =>
   new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }).format(miniMonth.value),
 )
@@ -150,6 +166,19 @@ function toggleCountry(code: string) {
     : [...selectedCountries.value, code]
 
   calendarRef.value?.getApi().refetchEvents()
+}
+
+async function loadAvailableCountries() {
+  countryLoadError.value = ''
+  try {
+    availableCountries.value = await fetchAvailableCountries()
+    calendarRef.value?.getApi().refetchEvents()
+  } catch (error) {
+    countryLoadError.value =
+      error instanceof Error
+        ? `More countries could not be loaded: ${error.message}`
+        : 'More countries could not be loaded. Check your connection and try again.'
+  }
 }
 
 function changeView(view: string) {
@@ -252,6 +281,10 @@ function eventDateLabel(event: EventApi) {
     day: 'numeric',
   }).format(event.start)
 }
+
+onMounted(() => {
+  void loadAvailableCountries()
+})
 
 const calendarOptions: CalendarOptions = {
   plugins: [bootstrap5Plugin, dayGridPlugin, interactionPlugin, listPlugin, timeGridPlugin],
@@ -379,10 +412,17 @@ const calendarOptions: CalendarOptions = {
       <section class="country-filters">
         <div class="section-heading">
           <h2>Holiday calendars</h2>
-          <span>{{ selectedCountries.length }}/{{ holidayCountries.length }}</span>
+          <span>{{ selectedCountries.length }}/{{ availableCountries.length }}</span>
         </div>
+        <input
+          v-model="countrySearch"
+          class="country-search"
+          type="search"
+          placeholder="Find a country"
+          aria-label="Find a country"
+        >
         <label
-          v-for="country in holidayCountries"
+          v-for="country in filteredCountries"
           :key="country.code"
           class="country-filter"
         >
@@ -398,6 +438,19 @@ const calendarOptions: CalendarOptions = {
           <span class="country-name">{{ country.name }}</span>
           <span class="country-code">{{ country.code }}</span>
         </label>
+        <p
+          v-if="countryLoadError"
+          class="country-load-error"
+          role="alert"
+        >
+          {{ countryLoadError }}
+          <button
+            type="button"
+            @click="loadAvailableCountries"
+          >
+            Retry
+          </button>
+        </p>
       </section>
 
       <div class="sidebar-footer">
@@ -857,6 +910,38 @@ const calendarOptions: CalendarOptions = {
 
 .country-filters {
   margin-top: 35px;
+}
+
+.country-search {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  color: #526077;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #e7eaf0;
+  border-radius: 8px;
+}
+
+.country-search:focus {
+  border-color: #9da9e8;
+  outline: 2px solid #e8ebff;
+}
+
+.country-load-error {
+  margin: 8px 0 0;
+  color: #a34a41;
+  font-size: 11px;
+}
+
+.country-load-error button {
+  padding: 0;
+  color: inherit;
+  font-weight: 650;
+  background: none;
+  border: 0;
+  text-decoration: underline;
 }
 
 .section-heading {
@@ -1513,6 +1598,17 @@ const calendarOptions: CalendarOptions = {
   .section-heading {
     flex: 0 0 auto;
     margin: 0 5px 0 0;
+  }
+
+  .country-search {
+    flex: 0 0 145px;
+    margin: 0;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .country-load-error {
+    flex: 0 0 100%;
   }
 
   .section-heading h2 {
