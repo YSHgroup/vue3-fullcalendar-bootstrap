@@ -22,8 +22,86 @@ export const holidayCountries: HolidayCountry[] = [
   { code: 'JP', name: 'Japan', color: '#39a18a' },
 ]
 
+const additionalCountryColors = [
+  '#5877d8',
+  '#a66acb',
+  '#e18a4d',
+  '#d65c7e',
+  '#39a18a',
+  '#4f9b9b',
+  '#c48b37',
+  '#6c83a5',
+]
 const holidayCache = new Map<string, Promise<PublicHoliday[]>>()
 const countryByCode = new Map(holidayCountries.map((country) => [country.code, country]))
+let availableCountriesRequest: Promise<HolidayCountry[]> | undefined
+
+function isAvailableCountry(value: unknown): value is { countryCode: string; countryName: string } {
+  if (typeof value !== 'object' || value === null) return false
+  const country = value as Record<string, unknown>
+
+  return (
+    typeof country.countryCode === 'string' &&
+    /^[A-Z]{2}$/.test(country.countryCode) &&
+    typeof country.countryName === 'string' &&
+    country.countryName.trim().length > 0
+  )
+}
+
+function colorForCountry(code: string) {
+  let hash = 0
+  for (const character of code) {
+    hash = (hash * 31 + character.charCodeAt(0)) >>> 0
+  }
+  return additionalCountryColors[hash % additionalCountryColors.length]!
+}
+
+export function fetchAvailableCountries(): Promise<HolidayCountry[]> {
+  if (availableCountriesRequest) return availableCountriesRequest
+
+  const request = fetch('https://date.nager.at/api/v3/AvailableCountries')
+    .then(async (response) => {
+      if (!response.ok) {
+        throw new Error(`The country service returned ${response.status}.`)
+      }
+
+      const data: unknown = await response.json()
+      if (!Array.isArray(data) || !data.every(isAvailableCountry)) {
+        throw new Error('The country service returned invalid data.')
+      }
+
+      const countries = new Map(
+        data.map(({ countryCode, countryName }) => [
+          countryCode,
+          {
+            code: countryCode,
+            name: countryName,
+            color: colorForCountry(countryCode),
+          },
+        ]),
+      )
+      for (const country of holidayCountries) {
+        countries.set(country.code, country)
+      }
+
+      const availableCountries = [...countries.values()].sort((first, second) =>
+        first.name.localeCompare(second.name),
+      )
+      countryByCode.clear()
+      for (const country of availableCountries) {
+        countryByCode.set(country.code, country)
+      }
+
+      return availableCountries
+    })
+    .catch((error: unknown) => {
+      availableCountriesRequest = undefined
+      throw error
+    })
+
+  availableCountriesRequest = request
+  return request
+}
 
 function isPublicHoliday(value: unknown): value is PublicHoliday {
   if (typeof value !== 'object' || value === null) return false

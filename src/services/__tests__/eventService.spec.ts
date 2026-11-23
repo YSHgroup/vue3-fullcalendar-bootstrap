@@ -1,11 +1,46 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { fetchHolidayEvents, holidayCountries } from '../eventService'
+import { fetchAvailableCountries, fetchHolidayEvents, holidayCountries } from '../eventService'
 
 afterEach(() => {
   vi.unstubAllGlobals()
 })
 
 describe('fetchHolidayEvents', () => {
+  it('loads the supported country catalog while preserving the original countries', async () => {
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      if (String(input).endsWith('/AvailableCountries')) {
+        return new Response(
+          JSON.stringify([{ countryCode: 'CA', countryName: 'Canada' }]),
+          { status: 200, headers: { 'Content-Type': 'application/json' } },
+        )
+      }
+
+      return new Response(
+        JSON.stringify([
+          {
+            date: '2099-07-01',
+            localName: 'Canada Day',
+            name: 'Canada Day',
+            countryCode: 'CA',
+            types: ['Public'],
+          },
+        ]),
+        { status: 200, headers: { 'Content-Type': 'application/json' } },
+      )
+    })
+    vi.stubGlobal('fetch', fetchMock)
+
+    const countries = await fetchAvailableCountries()
+    const events = await fetchHolidayEvents('2099-01-01', '2099-02-01', ['CA'])
+
+    expect(countries.map(({ code }) => code)).toContain('CA')
+    expect(countries.map(({ code }) => code)).toEqual(
+      expect.arrayContaining(holidayCountries.map(({ code }) => code)),
+    )
+    expect(events[0]?.extendedProps?.countryCode).toBe('CA')
+    expect(events[0]?.backgroundColor).toBeTruthy()
+  })
+
   it('loads holiday events from every selected country', async () => {
     const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
       const parts = String(input).split('/')
