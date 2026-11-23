@@ -4,6 +4,8 @@ Daymark is a responsive, browser-only calendar and practical **Vue 3 + FullCalen
 
 **Live app:** [yshgroup.github.io/vue3-fullcalendar-bootstrap](https://yshgroup.github.io/vue3-fullcalendar-bootstrap/)
 
+**Source code:** [GitHub repository](https://github.com/YSHgroup/vue3-fullcalendar-bootstrap) · **Author:** [YSH](https://yshintro.netlify.app/about/)
+
 ## What you can do
 
 - Switch between month, week, day, and agenda views.

@@ -655,6 +655,16 @@ const calendarOptions: CalendarOptions = {
           <a href="#holiday-calendar">Open the calendar</a>
           <a href="#country-calendars">Choose holiday countries</a>
           <a href="#holiday-data">Holiday data and privacy</a>
+          <a
+            href="https://github.com/YSHgroup/vue3-fullcalendar-bootstrap"
+            target="_blank"
+            rel="noreferrer"
+          >View source on GitHub</a>
+          <a
+            href="https://yshintro.netlify.app/about/"
+            target="_blank"
+            rel="noreferrer"
+          >About the author</a>
         </nav>
       </section>
 
@@ -666,6 +676,15 @@ const calendarOptions: CalendarOptions = {
             target="_blank"
             rel="noreferrer"
           >Nager.Date</a> · <a href="#tutorial">About this tutorial</a>
+          · <a
+            href="https://github.com/YSHgroup/vue3-fullcalendar-bootstrap"
+            target="_blank"
+            rel="noreferrer"
+          >GitHub</a> · <a
+            href="https://yshintro.netlify.app/about/"
+            target="_blank"
+            rel="noreferrer"
+          >Author</a>
         </span>
       </footer>
     </main>
