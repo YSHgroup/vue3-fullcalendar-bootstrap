@@ -1,6 +1,6 @@
 # Daymark — World Calendar
 
-Daymark is a responsive, browser-only calendar for planning around public holidays in the **United States, United Kingdom, Singapore, Hong Kong, and Japan**.
+Daymark is a responsive, browser-only calendar and practical **Vue 3 + FullCalendar tutorial**. Check public holidays for every country supported by Nager.Date, compare dates side by side, and add personal events without creating an account.
 
 **Live app:** [yshgroup.github.io/vue3-fullcalendar-bootstrap](https://yshgroup.github.io/vue3-fullcalendar-bootstrap/)
 
@@ -8,13 +8,17 @@ Daymark is a responsive, browser-only calendar for planning around public holida
 
 - Switch between month, week, day, and agenda views.
 - Browse dates with the mini calendar, previous/next controls, or the Today button.
-- Show or hide each country's public holidays independently.
+- Search the available country list and choose which countries' public holidays to show. The United States, United Kingdom, Singapore, Hong Kong, and Japan are selected by default.
 - Add and remove personal events. They are saved in this browser's local storage; no account or application server is used.
 - Use the calendar on desktop or mobile.
 
+## Vue 3 and FullCalendar tutorial
+
+This project demonstrates a responsive FullCalendar integration using Vue 3 and Bootstrap 5, including selectable holiday calendars, event loading, and browser-local personal events. Start with the [live holiday calendar](https://yshgroup.github.io/vue3-fullcalendar-bootstrap/#holiday-calendar), [choose countries](https://yshgroup.github.io/vue3-fullcalendar-bootstrap/#country-calendars), or read about the [holiday data and privacy](https://yshgroup.github.io/vue3-fullcalendar-bootstrap/#holiday-data).
+
 ## Holiday data and privacy
 
-Public holidays are fetched directly from the [Nager.Date API](https://date.nager.at/) by the browser. The app requests data for the calendar's visible year or years, caches successful responses for the current page session, and displays a message if the service is unavailable. An internet connection is needed to load holiday data.
+The available country list and public holidays are fetched directly from the [Nager.Date API](https://date.nager.at/) by the browser. The app requests holiday data for the calendar's visible year or years, caches successful responses for the current page session, and displays a message if the service is unavailable. An internet connection is needed to load the country list and holiday data.
 
 Personal events stay in the browser's local storage. They are not sent to Daymark or stored on a server. Clearing this browser's site data will remove them.
 
@@ -42,6 +46,8 @@ npm run preview
 ```
 
 The production build uses the `/vue3-fullcalendar-bootstrap/` base path for GitHub Pages. `npm run preview` serves the built app locally so the production output can be checked before deployment.
+
+The deployed site includes a `robots.txt` file and XML sitemap at the project Pages URL.
 
 ## Deployment
 

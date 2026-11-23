@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yshgroup.github.io/vue3-fullcalendar-bootstrap/sitemap.xml
