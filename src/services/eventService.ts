@@ -36,15 +36,15 @@ const holidayCache = new Map<string, Promise<PublicHoliday[]>>()
 const countryByCode = new Map(holidayCountries.map((country) => [country.code, country]))
 let availableCountriesRequest: Promise<HolidayCountry[]> | undefined
 
-function isAvailableCountry(value: unknown): value is { countryCode: string; countryName: string } {
+function isAvailableCountry(value: unknown): value is { countryCode: string; name: string } {
   if (typeof value !== 'object' || value === null) return false
   const country = value as Record<string, unknown>
 
   return (
     typeof country.countryCode === 'string' &&
     /^[A-Z]{2}$/.test(country.countryCode) &&
-    typeof country.countryName === 'string' &&
-    country.countryName.trim().length > 0
+    typeof country.name === 'string' &&
+    country.name.trim().length > 0
   )
 }
 
@@ -71,11 +71,11 @@ export function fetchAvailableCountries(): Promise<HolidayCountry[]> {
       }
 
       const countries = new Map(
-        data.map(({ countryCode, countryName }) => [
+        data.map(({ countryCode, name }) => [
           countryCode,
           {
             code: countryCode,
-            name: countryName,
+            name,
             color: colorForCountry(countryCode),
           },
         ]),

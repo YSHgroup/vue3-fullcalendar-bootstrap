@@ -10,7 +10,7 @@ describe('fetchHolidayEvents', () => {
     const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
       if (String(input).endsWith('/AvailableCountries')) {
         return new Response(
-          JSON.stringify([{ countryCode: 'CA', countryName: 'Canada' }]),
+          JSON.stringify([{ countryCode: 'CA', name: 'Canada' }]),
           { status: 200, headers: { 'Content-Type': 'application/json' } },
         )
       }
