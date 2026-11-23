@@ -343,7 +343,7 @@ const calendarOptions: CalendarOptions = {
     <aside class="sidebar">
       <a
         class="brand"
-        href="#"
+        href="#top"
         aria-label="Daymark home"
       >
         <span class="brand-mark"><i class="bi bi-calendar2-week-fill" /></span>
@@ -409,7 +409,10 @@ const calendarOptions: CalendarOptions = {
         </div>
       </section>
 
-      <section class="country-filters">
+      <section
+        id="country-calendars"
+        class="country-filters"
+      >
         <div class="section-heading">
           <h2>Holiday calendars</h2>
           <span>{{ selectedCountries.length }}/{{ availableCountries.length }}</span>
@@ -459,15 +462,18 @@ const calendarOptions: CalendarOptions = {
       </div>
     </aside>
 
-    <main class="main-content">
+    <main
+      id="top"
+      class="main-content"
+    >
       <header class="page-header">
         <div>
           <p class="eyebrow">
             YOUR WORLD, IN SYNC
           </p>
-          <h1>Make room for what matters.</h1>
+          <h1>Public holidays around the world, in one calendar.</h1>
           <p class="page-subtitle">
-            A little more clarity for every day ahead.
+            A FullCalendar + Vue 3 tutorial for exploring holidays and planning ahead.
           </p>
         </div>
         <div class="header-date">
@@ -504,6 +510,7 @@ const calendarOptions: CalendarOptions = {
       </div>
 
       <section
+        id="holiday-calendar"
         class="calendar-card"
         aria-label="Calendar"
       >
@@ -625,13 +632,41 @@ const calendarOptions: CalendarOptions = {
         </p>
       </section>
 
+      <section
+        id="tutorial"
+        class="project-info"
+        aria-labelledby="project-info-title"
+      >
+        <p class="eyebrow">
+          ABOUT THIS PROJECT
+        </p>
+        <h2 id="project-info-title">
+          A practical Vue 3 and FullCalendar holiday calendar
+        </h2>
+        <p>
+          Daymark is a hands-on example for a FullCalendar + Vue 3 tutorial, built with Bootstrap.
+          Explore public holidays for every country supported by Nager.Date, choose which countries
+          appear in your calendar, and add personal events that stay in this browser.
+        </p>
+        <nav
+          class="project-links"
+          aria-label="Explore the calendar"
+        >
+          <a href="#holiday-calendar">Open the calendar</a>
+          <a href="#country-calendars">Choose holiday countries</a>
+          <a href="#holiday-data">Holiday data and privacy</a>
+        </nav>
+      </section>
+
       <footer class="page-footer">
         <span>Thoughtfully keeping the world in view.</span>
-        <span>Holidays by <a
-          href="https://date.nager.at/"
-          target="_blank"
-          rel="noreferrer"
-        >Nager.Date</a></span>
+        <span id="holiday-data">
+          Holidays by <a
+            href="https://date.nager.at/"
+            target="_blank"
+            rel="noreferrer"
+          >Nager.Date</a> · <a href="#tutorial">About this tutorial</a>
+        </span>
       </footer>
     </main>
 
@@ -1402,6 +1437,50 @@ const calendarOptions: CalendarOptions = {
   background: #fff;
   border: 1px dashed #dfe3eb;
   border-radius: 11px;
+}
+
+.project-info {
+  margin-top: 42px;
+  padding: 24px 0 0;
+  border-top: 1px solid #e6e9ef;
+}
+
+.project-info > .eyebrow {
+  margin-bottom: 5px;
+}
+
+.project-info h2 {
+  margin: 0 0 10px;
+  color: #34415a;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.project-info > p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 0;
+  color: #788296;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin-top: 13px;
+  font-size: 11px;
+}
+
+.project-links a {
+  color: #6877c5;
+  text-decoration: none;
+}
+
+.project-links a:hover,
+.page-footer a:hover {
+  text-decoration: underline;
 }
 
 .page-footer {
