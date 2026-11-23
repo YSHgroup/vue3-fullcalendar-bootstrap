@@ -424,23 +424,25 @@ const calendarOptions: CalendarOptions = {
           placeholder="Find a country"
           aria-label="Find a country"
         >
-        <label
-          v-for="country in filteredCountries"
-          :key="country.code"
-          class="country-filter"
-        >
-          <input
-            type="checkbox"
-            :checked="selectedCountries.includes(country.code)"
-            @change="toggleCountry(country.code)"
+        <div class="country-list">
+          <label
+            v-for="country in filteredCountries"
+            :key="country.code"
+            class="country-filter"
           >
-          <span
-            class="country-color"
-            :style="{ '--country-color': country.color }"
-          />
-          <span class="country-name">{{ country.name }}</span>
-          <span class="country-code">{{ country.code }}</span>
-        </label>
+            <input
+              type="checkbox"
+              :checked="selectedCountries.includes(country.code)"
+              @change="toggleCountry(country.code)"
+            >
+            <span
+              class="country-color"
+              :style="{ '--country-color': country.color }"
+            />
+            <span class="country-name">{{ country.name }}</span>
+            <span class="country-code">{{ country.code }}</span>
+          </label>
+        </div>
         <p
           v-if="countryLoadError"
           class="country-load-error"
@@ -822,7 +824,9 @@ const calendarOptions: CalendarOptions = {
   top: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 0;
+  overflow-y: auto;
   padding: 32px 22px 24px;
   background: #fff;
   border-right: 1px solid var(--line);
@@ -963,7 +967,31 @@ const calendarOptions: CalendarOptions = {
 }
 
 .country-filters {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
   margin-top: 35px;
+}
+
+.country-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 42vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #c8ceda transparent;
+  scrollbar-width: thin;
+}
+
+.country-list::-webkit-scrollbar {
+  width: 7px;
+}
+
+.country-list::-webkit-scrollbar-thumb {
+  background: #c8ceda;
+  border: 2px solid #fff;
+  border-radius: 8px;
 }
 
 .country-search {
@@ -1649,6 +1677,7 @@ const calendarOptions: CalendarOptions = {
 
   .sidebar {
     position: static;
+    height: auto;
     min-height: 0;
     padding: 15px 18px;
     border-right: 0;
@@ -1681,32 +1710,38 @@ const calendarOptions: CalendarOptions = {
   }
 
   .country-filters {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 145px;
     align-items: center;
     gap: 7px;
     margin-top: 13px;
-    overflow-x: auto;
-    scrollbar-width: none;
   }
 
-  .country-filters::-webkit-scrollbar {
-    display: none;
+  .country-list {
+    display: flex;
+    grid-column: 1 / -1;
+    gap: 7px;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 3px;
+    scrollbar-width: thin;
   }
 
   .section-heading {
-    flex: 0 0 auto;
-    margin: 0 5px 0 0;
+    min-width: 0;
+    margin: 0;
   }
 
   .country-search {
-    flex: 0 0 145px;
+    width: 145px;
     margin: 0;
     padding: 6px 8px;
     font-size: 10px;
   }
 
   .country-load-error {
-    flex: 0 0 100%;
+    grid-column: 1 / -1;
   }
 
   .section-heading h2 {
